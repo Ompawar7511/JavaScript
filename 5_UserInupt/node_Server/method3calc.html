@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Method3</title>
+  </head>
+  <body>
+    <form id="calForm">
+      <input type="text" name="n1" id="n1" placeholder="enter first value" />
+      <input type="text" name="n2" id="n2" placeholder="enter Second value" />
+      <button type="submit">Calculate</button>
+    </form>
+    <div id="result"></div>
+    <script>
+      async function handleSubmit(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const formObject = {};
+        formData.forEach((value, key) => {
+          formObject[key] = value;
+        });
+        console.log("Form data as object:", formObject);
+        try {
+          const response = await fetch("http://localhost:3001/calculate", {
+            method: "POST",
+            body: formData,
+          });
+
+          if (!response.ok) {
+            throw new Error("Server responded with an error");
+          }
+          const result = await response.json();
+          document.getElementById(
+            "result"
+          ).innerHTML = `<h1>Result:${result.result}</h1>`;
+        } catch (err) {
+          console.log(err);
+        }
+        // console.log(
+        //   "response content type:",
+        //   response.headers.get("Content-type")
+        // );
+      }
+
+      //add event listener to form
+      document
+        .getElementById("calForm")
+        .addEventListener("submit", handleSubmit);
+    </script>
+  </body>
+</html>
