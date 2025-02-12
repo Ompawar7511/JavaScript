@@ -103,6 +103,3 @@ class employee{
 let employee1=new employee();
 employee1.accept(1,"abc","Developer",150000);
 employee1.display();
-
-
-

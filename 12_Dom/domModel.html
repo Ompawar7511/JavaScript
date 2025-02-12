@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom Model in JavaScript</title>
+</head>
+<body>
+    <h1 id="head1">Heading 1</h1>
+    <h2 id="head2">Heading 2</h2>
+    <h3 id="head3">Heading 3</h3>
+
+    <div id="main">
+        <p class="p1">paregraph 1</p>
+        <p class="p1">paregraph 2</p>
+        <p id="p3">paregraph 3</p>
+        <p id="p4">paregraph 4</p>
+        <p class="p5">paregraph 5</p>
+    </div>
+    <div id="container">
+        <p>p1</p>
+        <p>adsf</p>
+        <p>afa</p>
+        <p>aerae</p>
+    </div>
+    <p id="eventid">ParaButton</p>
+    <input type="text" id="eventkey" placeholder="enterKey" />
+    <p id="keypress"></p>
+</body>
+<script>
+    // Accessing 
+
+    //using getElementById
+ //How to access using id of element in javaScript
+ let a=document.getElementById("head1");
+ console.log("Accessed element =",a);
+ // How to access the text of the perticular element
+ let b=document.getElementById("head2").textContent;
+ console.log("accessed element text =",b);
+ 
+
+ // using getElementByClassName
+
+ let c=document.getElementsByClassName("p1")[4];
+ console.log("Accessed element by using class name =",c);
+
+ // Using getElementByTagName
+//access all element
+ let d=document.getElementsByTagName("p");
+ console.log("Accessed element by using tag name =",d);
+ // access perticular element
+ console.log("accessed 3 index element =",d[2]);
+
+
+ // Accessed element by using selector 
+ // css selector for example(class(.),id(#),anyHTMLTag etc)
+ let e= document.querySelector("p.p5");
+ console.log("Access element by using querySelector =",e);
+
+//Access all element by using querySelectorAll
+let f=document.querySelectorAll("p.p1")
+console.log("all element of the p1 class =",f)
+
+// MANIPULATION
+// Change the text content
+document.getElementById("head3").textContent="Changeable Heading ";
+//change the html element 
+document.getElementById("p4").innerHTML="<h1>Changed Tag element <h1>"
+
+// Change Attribute of the element (using setAttribute)
+document
+.getElementById("p3")
+.setAttribute("style","background-color:red")
+
+//  other method for changing the style of the element 
+document.getElementById("p3").style.border="2px solid black";
+
+// change the text content by using id 
+document.getElementById("p3").textContent="Changed text and its style "
+
+// Creating and Removing element from your html (Dynamically)
+
+// create an element 
+let newDiv=document.createElement("h1");
+newDiv.innerHTML="NEW ADDED TAG ELEMENT";
+// Append the element (without appening we can not create new element )
+document.getElementById("main").append(newDiv);
+
+// remove Element Dynamically
+newDiv.remove();
+
+
+
+// addEventListener Method 
+    /*
+    In JavaScript, the addEventListener() method is used to attach an event to an element.
+    Here's a list of common events you can use with addEventListener():
+    1. Mouse Events
+    click – Fired when a mouse button is clicked on an element.
+    dblclick – Fired when a mouse button is double-clicked on an element.
+    mousedown – Fired when a mouse button is pressed on an element.
+    mouseup – Fired when a mouse button is released over an element.
+    mouseover – Fired when the mouse pointer moves over an element.
+    mouseout – Fired when the mouse pointer moves out of an element.
+    mousemove – Fired when the mouse pointer moves over an element.
+    mouseenter – Fired when the mouse pointer enters an element.
+    mouseleave – Fired when the mouse pointer leaves an element.
+    contextmenu – Fired when the right mouse button is pressed (context menu event).
+    2. Keyboard Events
+    keydown – Fired when a key is pressed down.
+    keypress – Fired when a key is pressed and held (deprecated).
+    keyup – Fired when a key is released.
+    3. Focus Events
+    focus – Fired when an element gains focus.
+    blur – Fired when an element loses focus.
+    focusin – Similar to focus, but it bubbles (can be caught on parent elements).
+    focusout – Similar to blur, but it bubbles.
+    4. Form Events
+    submit – Fired when a form is submitted.
+    change – Fired when the value of an element (like an input or select) changes.
+    input – Fired when an input element's value is changed.
+    reset – Fired when a form is reset.
+    5. Touch Events (for touch devices)
+    touchstart – Fired when a touch point is placed on the touch surface.
+    touchend – Fired when a touch point is removed from the touch surface.
+    touchmove – Fired when a touch point is moved along the surface.
+    touchcancel – Fired when a touch event is interrupted.
+    6. Window Events
+    load – Fired when a page has fully loaded.
+    resize – Fired when the window is resized.
+    scroll – Fired when the user scrolls the page or an element.
+    unload – Fired when the page is unloaded (not commonly used in modern websites).
+    beforeunload – Fired when the window is about to unload (can be used to prompt the user).
+    7. Pointer Events
+    pointerdown – Fired when a pointing device (mouse, pen, etc.) is pressed.
+    pointerup – Fired when a pointing device is released.
+    pointermove – Fired when a pointing device is moved.
+    pointerover – Fired when a pointer enters an element.
+    pointerout – Fired when a pointer leaves an element.
+    8. Media Events
+    play – Fired when a media element (audio/video) starts playing.
+    pause – Fired when a media element is paused.
+    ended – Fired when a media element finishes playing.
+    volumechange – Fired when the volume of a media element changes.
+    timeupdate – Fired when the playback position of a media element changes.
+    9. Animation Events
+    animationstart – Fired when a CSS animation starts.
+    animationend – Fired when a CSS animation finishes.
+    animationiteration – Fired when a CSS animation completes an iteration.
+    10. Transition Events
+    transitionstart – Fired when a CSS transition starts.
+    transitionend – Fired when a CSS transition finishes.
+    transitioncancel – Fired when a CSS transition is canceled.
+    11. Drag Events
+    dragstart – Fired when the user starts dragging an element.
+    drag – Fired when the element is being dragged.
+    dragend – Fired when the user finishes dragging an element.
+    dragenter – Fired when the dragged element enters a valid drop target.
+    dragover – Fired when the dragged element is over a valid drop target.
+    dragleave – Fired when the dragged element leaves a valid drop target.
+    drop – Fired when the dragged element is dropped on a valid drop target.
+    12. Clipboard Events
+    copy – Fired when the user copies content.
+    cut – Fired when the user cuts content.
+    paste – Fired when the user pastes content.
+    13. Pointer Events
+    pointerdown – Fired when a pointer (mouse, touch, stylus, etc.) is pressed.
+    pointerup – Fired when a pointer is released.
+    pointermove – Fired when a pointer moves.
+    pointerover – Fired when a pointer enters an element.
+    pointerout – Fired when a pointer leaves an element.
+    */
+
+    document
+      .getElementById("eventid")
+      .addEventListener("mouseover", function () {
+        document.getElementById("eventid").textContent = "testing_values";
+        document.getElementById("eventid").style.backgroundColor =
+          "MediumVioletRed";
+      });
+    document
+      .getElementById("eventid")
+      .addEventListener("mouseout", function () {
+        document.getElementById("eventid").textContent = "ParaButton";
+        document.getElementById("eventid").style.backgroundColor =
+          "transparent";
+      });
+
+    document.getElementById("eventkey").addEventListener("keydown", logKey);
+    function logKey(e) {
+      document.getElementById("keypress").textContent = `Key=${e.key}`;
+    }
+</script>
+</html>
