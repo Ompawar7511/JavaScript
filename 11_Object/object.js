@@ -79,3 +79,30 @@ let product4={
     },
 };
 product4.display();
+
+// calsses and object in javaScript
+
+class employee{
+    id;
+    name;
+    job;
+    salary;
+    accept(id,name,job,salary){
+    this.id=id;
+    this.name=name;
+    this.job=job;
+    this.salary=salary;
+    }
+    display(){
+        console.log("Employee id =",this.id);
+        console.log("Employee name =",this.name);
+        console.log("Employee job =",this.job);
+        console.log("Employee salary =",this.salary)
+    }
+}
+let employee1=new employee();
+employee1.accept(1,"abc","Developer",150000);
+employee1.display();
+
+
+
