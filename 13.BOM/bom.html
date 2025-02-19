@@ -1,0 +1,99 @@
+<!-- BOM(Browser object model):it is use to interact with browser itself  -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOM model in js</title>
+ </head>
+ <body>
+    <h1>This is tutorial of BOM model</h1>
+    <p id="msg"></p>
+    <button id="click">click me</button>
+    <button id="close">close me</button>
+    <button id="forward">forward</button>
+    <button id="f+2">forward 2</button>
+    <script>
+        // window:it is represent the browser window and show the properties of perticular window like height and width
+
+        // console.log("window height",window.innerHeight);
+        // console.log("window width",window.innerWidth);
+
+        // window.alert("Hello World");
+        // window.confirm("confirm action");
+          
+        // var d1=prompt("Enter the massage");
+        // document.getElementById("msg").innerText=d1;
+
+
+        // document.getElementById("click").addEventListener("click",()=>{
+        //     window.open("google.com","_top");//open new window blank type 
+        // });
+        // /* Type for opening the link 
+        // 1._self-Open the link in the same tab/window 
+        // 2._blank-open the link in new tab/window
+        // 3._parent-open the window in the parent frame(used the frameSets)
+        // 4._top-Opens the link in the full browser window, breaking out of frames.  
+        // */
+        // document.getElementById("close").addEventListener("click",()=>{
+        //     window.close();// close your current window
+        // });
+
+      //Navigator
+      console.log("browser info :   ",navigator.userAgent);//show  the user browser information
+      console.log("user language : ",navigator.language);// user which language use show this language in browser 
+      console.log("os.platform : ",navigator.platform);// show which platform user use
+      console.log("check user is online or not",navigator.onLine);// if user is not online then it show false message 
+      console.log("if cookies",navigator.cookieEnabled);//check cookies is enabled or not 
+      console.log("if chrome:", navigator.userAgent.includes("Chrome"));
+
+
+     //Screen
+      console.log("screen.width:", screen.width);
+    console.log("screen.height:", screen.height);
+    console.log("screen.availWidth:", screen.availWidth); // Available width/height excluding UI elements
+    console.log("screen.availHeight:", screen.availHeight);
+    console.log("screen.colorDepth", screen.colorDepth);
+    console.log("screen.pixelDepth", screen.pixelDepth);
+
+        //location
+        console.log("location.href:", location.href);
+    console.log("location.hostname:", location.hostname);
+    console.log("location.pathname:", location.pathname);
+    console.log("location.protocol:", location.protocol);
+    console.log("location.port:", location.port);
+
+     //history
+
+    //history.back(); //go to previous page
+    // history.forward(); //go forward to next page
+    document.getElementById("forward").addEventListener("click", () => {
+      history.forward();
+    });
+    // history.go(-2); //go back two pages
+    // history.go(2); //go forward two pages
+    document.getElementById("f+2").addEventListener("click", () => {
+      history.go(2);
+    });
+    console.log("history.lenght:", history.length);
+
+    //set cookie
+    function setCookie(name, val, days) {
+      let exp = "";
+      if (days) {
+        let date = new Date();
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+        //days * hrs * min * sec * millisec
+        exp = `; expire=${date.toUTCString()}`;
+      }
+      document.cookie = name + "=" + val + exp + "; path=/";
+      //path=/ ensures accessible to all pages;
+    }
+    setCookie("username", "Asim", 1);
+        //view cookie
+        if (document.cookie) {
+      console.log("cookie=", document.cookie);
+    }
+    </script>
+ </body>
+ </html>
